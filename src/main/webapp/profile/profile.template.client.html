@@ -3,8 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- Put BootStrap first -- as baseline, then the followed by customized CSS styles we created -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+
 </head>
 <body>
+<div class="container">
+    <a href="../index.html">
+        Home
+    </a>
+
+    <!-- custom styling CSS -->
+    <h1>Profile</h1>
+
+
+    <!-- Username -->
+    <div class = "form-group row">
+        <label for = "usernameInput" class="col-sm-2 col-form-label" > Username </label>
+        <div class="col-sm-10">
+        <input id= "usernameInput" value="alice" type="text" class="form-control" readonly/>
+        </div>
+    </div>
+
+    <!--Password -->
+    <div class = "form-group row">
+        <label for = "passwordInput" class ="col-sm-2 col-form-label" > Password </label>
+        <div class = "col-sm-10">
+         <input id="passwordInput" type ="password" class="form-control"/>
+        </div>
+    </div>
+
+    <!-- Email -->
+    <div class = "form-group row">
+    <!-- ' type="email" ' validates if it is in an email format -->
+    <!-- on mobile it will bring up the right keyboard-->
+    <label for = "emailInput" class = "col-sm-2 col-form-label" > Email </label>
+        <div class = "col-sm-10">
+        <input id="emailInput"
+                title="Enter your email"
+                placeholder = "alice@wonderland.com"
+                type="email"
+                class= "form-control" />
+        </div>
+    </div>
+
+
+    <!-- DOB -->
+    <div class = "form-group row">
+        <!-- Input value for date has to be the syntax year-month-date otherwise it doesn't work -->
+        <!-- The rendering of the format depends on the location of your browser, looks like 11/21/2005 cuz we're in the USA-->
+        <!-- In europe the date rendering is year, month, day -->
+       <label for = "dobInput" class = "col-sm-2 col-form-label"> DOB </label>
+        <div class = "col-sm-10">
+        <input id = "dobInput" value="2005-11-21" type="date" class = "form-control"/>
+        </div>
+    </div>
+
+
+    <!-- Update -->
+    <button class="btn btn-success btn-block"> Update </button>
+
+    <!-- Logout -->
+    <a href="../index.html"> Logout </a>
+
+
+    <!--Signup -->
+    <!-- '..' means go up in the directory using a relative path* recommend (not absolute path) -->
+    <a href= "../register/register.template.client.html" class="float-right" >
+        Sign Up
+    </a>
+
+
+    <!-- wrap all content in body, add margins and centers content with div container -->
+</div>
 
 </body>
 </html>
