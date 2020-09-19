@@ -1,13 +1,103 @@
 
 .wbdv-editor-heading{
     color: white;
-    background-color: grey;
+    background-color: #343a40;
     top: 0px;
     left: 0px;
     right: 0px;
     position: fixed;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.wbdv-margins-left-right-auto{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/*.wbdv-margin-header-bottom{*/
+/*    margin-bottom : -1px;*/
+/*}*/
+
+.wbdv-pill-color-spacing{
+    background-color: grey;
+    color: white;
+    margin: 5px;
+}
+
+.wbdv-module-nudge {
+    margin-left:100px;
+}
+
+.wdbv-plus-nudge{
+    margin-top: 6px;
+}
+
+
+.nav-link {
+    display: block;
+    padding: .5rem 1.5rem;
+}
+
+.nav-pills .nav-link {
+    border-radius: .25rem;
+    margin: 10px;
+}
+
+/* Header -- Pill Nav  */
+a {
+    color: #f8f9fa;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/*a {*/
+/*    color: #f8f9fa;*/
+/*    text-decoration: none;*/
+/*    background-color: #545b62;*/
+/*}*/
+
+a {
+    color: #f8f9fa;
+    text-decoration: none;
+    background-color: #343a40;
+}
+
+.wdbv-widget-nudge-right{
+    padding-right: 110px;
 }
 
 body {
-    padding-top: 90px;
+    padding-top: 120px;
+    background-color: lightgrey;
 }
+
+.wbdv-module-list-item-style {
+    border-radius: .25rem;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: dimgrey;
+    color: white;
+}
+
+/* Grid */
+
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+            'header header header header header header '
+            'menu main main main main right  '
+            'menu footer footer footer footer footer';
+    grid-gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+}
+

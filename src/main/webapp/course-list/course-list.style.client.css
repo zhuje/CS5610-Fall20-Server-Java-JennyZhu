@@ -34,6 +34,7 @@
     right: 0px;
     padding-top: 20px;
     padding-bottom: 20px;
+    margin:0px;
 }
 
 .wbdv-header-spacing {
@@ -77,3 +78,5 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+

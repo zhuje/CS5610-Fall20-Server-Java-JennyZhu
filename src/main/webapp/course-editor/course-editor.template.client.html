@@ -9,15 +9,54 @@
     <link href="course-editor.style.client.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="container">
-    <h1 class="wbdv-editor-heading">CS5610</h1>
+
+<!-- HEADER-->
+
+<!--<div class="container ">-->
+
+    <div class= "row  wbdv-editor-heading ">
+<!--        <h5 class="wbdv-editor-heading wbdv-margins-left-right-auto ">-->
+
+                <div class="wbdv-margin-header-bottom col-xs-3 wbdv-margins-left-right-auto">
+                    <h5>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        &nbsp;
+                        &nbsp;
+                         CS5610 - WebDev
+                    </h5>
+                </div>
+
+                <div class = "col-xs-5 d-none d-lg-inline d-print-inline wbdv-margins-left-right-auto ">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a class="nav-link" href="#"> Build </a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#"> Pages </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> Theme </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> Store </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> Apps </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> Settings </a></li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-1 wbdv-margins-left-right-auto">
+                    <i class="fa fa-plus fa-2x pull-right wdbv-plus-nudge" aria-hidden="true"></i>
+                </div>
+
+<!--        </h5>-->
+    </div>
+
+<!--</div>-->
+
+
+
+    <!-- BODY -->
 
     <div class="row">
+
         <div class="col-4"> <!-- Declare leftHand nav bars -->
             <div>
                 <!-- List of Topics -->
-                <ul class="list-group">
-                    <li class="list-group-item "> Module1 - jQuery <i class="fa fa-times pull-right"></i> </li>
+                <ul class="list-group wbdv-module-nudge ">
+                    <li class="list-group-item wbdv-module-list-item-style">  Module1 - jQuery <i class="fa fa-times pull-right"></i> </li>
                     <li class="list-group-item active"> Module 2 - React <i class="fa fa-times pull-right"></i></li>
                     <li class="list-group-item"> Module 3 - Redux  <i class="fa fa-times pull-right"></i></li>
                     <li class="list-group-item"> Module 4 - Native <i class="fa fa-times pull-right"></i></li>
@@ -28,27 +67,26 @@
                 </ul>
             </div>
         </div>
-        <div class="col-8"> <!-- Declare rightHand nav bars -->
-            <div>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link" href="#">Tags</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Elements</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Attributes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Headings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tables</a></li>
-                </ul>
-            </div>
+        <div class="col-8 wdbv-widget-nudge-right"> <!-- Declare rightHand nav bars -->
+<!--            <div>-->
+<!--                <ul class="nav nav-tabs">-->
+<!--                    <li class="nav-item"><a class="nav-link" href="#">Tags</a></li>-->
+<!--                    <li class="nav-item"><a class="nav-link active" href="#">Elements</a></li>-->
+<!--                    <li class="nav-item"><a class="nav-link" href="#">Attributes</a></li>-->
+<!--                    <li class="nav-item"><a class="nav-link" href="#">Headings</a></li>-->
+<!--                    <li class="nav-item"><a class="nav-link" href="#">Tables</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
 
             <br/>
 
             <div>
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link" href="#">Block</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Inline</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Topic 123</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Topic 234</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Topic 345</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Topic 456</a></li>
+                    <li class="nav-item"><a class="nav-link " href="#"> Topic 1 </a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#"> Topic 2 </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"> Topic 3 </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"> Topic 4 </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"> + </a></li>
                 </ul>
             </div>
 
@@ -91,9 +129,13 @@
         </div>
     </div>
 
-
-
-
+<div class="grid-container">
+    <div class="item1">Header</div>
+    <div class="item2">Menu</div>
+    <div class="item3">Main</div>
+    <div class="item4">Right</div>
+    <div class="item5">Footer</div>
+</div>
 
 </div>
 </body>
