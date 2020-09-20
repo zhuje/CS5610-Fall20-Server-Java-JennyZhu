@@ -65,39 +65,215 @@ a {
     background-color: #343a40;
 }
 
-.wdbv-widget-nudge-right{
-    padding-right: 110px;
-}
+
 
 body {
-    padding-top: 120px;
+    padding-top: 100px;
     background-color: lightgrey;
 }
 
 .wbdv-module-list-item-style {
     border-radius: .25rem;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 20px;
+    margin-right: 20px;
     background-color: dimgrey;
     color: white;
 }
 
-/* Grid */
-
-.item1 { grid-area: header; }
-.item2 { grid-area: menu; }
-.item3 { grid-area: main; }
-.item4 { grid-area: right; }
-.item5 { grid-area: footer; }
-
-.grid-container {
-    display: grid;
-    grid-template-areas:
-            'header header header header header header '
-            'menu main main main main right  '
-            'menu footer footer footer footer footer';
-    grid-gap: 10px;
-    background-color: #2196F3;
-    padding: 10px;
+.wbdv-module-list-item-style-transparent {
+    border-radius: .25rem;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: transparent;
+    color: white;
 }
+
+
+/********************** Item3 -- Widget Styling ******************/
+.wbdv-widget-heading-button{
+    margin-right: 2px;
+}
+
+.wbdv-widget-input{
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+.wbdv-widget-save-preview{
+    margin-top: -20px;
+    margin-right: 0px;
+}
+
+.wdbv-widget-nudge-right{
+    padding-right: 110px;
+    padding-left: 50px;
+    background-color: whitesmoke;
+    padding: 35px;
+}
+
+.wbdv-widget-save-button{
+    margin-right: 47px;
+}
+
+
+/***  Item3 -- Widget -- Toggle Button ***/
+/* Source for toggle button: https://www.w3schools.com/howto/howto_css_switch.asp */
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+
+/*********** Modules Sidebar *********************/
+/*.wbdv-modules-sidebar {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    width: 300px;*/
+/*    background-color: #23282e;*/
+/*    position: fixed;*/
+/*    height: 100%;*/
+/*    overflow: auto;*/
+/*}*/
+
+
+/*.wbdv-widgets{*/
+/*    margin-left: 500px;*/
+/*    padding: 1px 16px;*/
+/*    height: 1000px;*/
+/*    background-color: whitesmoke;*/
+
+/*}*/
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#sidebar, #content {
+    height: 100%;
+    overflow:auto;
+    float:left;
+    transition: width .35s;
+}
+
+
+
+
+
+.wbdv-modules-sidebar {
+    background-color: #1f2429;
+    padding: 19px;
+}
+
+
+/**** Bottom Sticky Plus Button *****/
+.wbdv-add-course-button {
+    position: absolute;
+    color: red;
+}
+
+/*
+this is a comment
+ */
+.wbdv-sticky-add-course-button {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    color: red;
+}
+
+
+
+
+
+
+
+    /***************** GRID **************************/
+
+/*.item1 { grid-area: module;*/
+/*background-color: #343a40*/
+/*}*/
+/*.item2 { grid-area: widget;*/
+/*background-color: white}*/
+/*.item3{*/
+/*    grid-area: header;*/
+/*}*/
+
+/*.grid-container {*/
+/*    display: grid;*/
+/*    grid-template-areas:*/
+/*            'header header header header header header'*/
+/*            'module module widget widget widget widget ';*/
+
+
+/*    grid-gap: 0px;*/
+/*    background-color: #2196F3;*/
+/*    padding: 0px;*/
+/*}*/
+
+
 

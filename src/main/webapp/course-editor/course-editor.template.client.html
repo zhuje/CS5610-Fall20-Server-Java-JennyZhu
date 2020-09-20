@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          rel="stylesheet"/>
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet"/>
     <link href="../css/styles.css" rel="stylesheet"/>
     <link href="course-editor.style.client.css" rel="stylesheet"/>
 </head>
@@ -12,74 +15,82 @@
 
 <!-- HEADER-->
 
-<!--<div class="container ">-->
+<div class="grid-container">
 
-    <div class= "row  wbdv-editor-heading ">
-<!--        <h5 class="wbdv-editor-heading wbdv-margins-left-right-auto ">-->
+<!--    <div class="container ">-->
 
-                <div class="wbdv-margin-header-bottom col-xs-3 wbdv-margins-left-right-auto">
-                    <h5>
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                        &nbsp;
-                        &nbsp;
-                         CS5610 - WebDev
-                    </h5>
-                </div>
+    <div class="row  wbdv-editor-heading ">
+        <!--        <h5 class="wbdv-editor-heading wbdv-margins-left-right-auto ">-->
 
-                <div class = "col-xs-5 d-none d-lg-inline d-print-inline wbdv-margins-left-right-auto ">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link" href="#"> Build </a></li>
-                        <li class="nav-item"><a class="nav-link active" href="#"> Pages </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"> Theme </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"> Store </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"> Apps </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"> Settings </a></li>
-                    </ul>
-                </div>
+        <div class=" col-xs-3 wbdv-margins-left-right-auto">
+            <h5>
+                <i class="fa fa-times" aria-hidden="true"></i>
+                &nbsp;
+                &nbsp;
+                CS5610 - WebDev
+            </h5>
+        </div>
 
-                <div class="col-xs-1 wbdv-margins-left-right-auto">
-                    <i class="fa fa-plus fa-2x pull-right wdbv-plus-nudge" aria-hidden="true"></i>
-                </div>
+        <div class="col-xs-5 d-none d-lg-inline d-print-inline wbdv-margins-left-right-auto ">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link" href="#"> Build </a></li>
+                <li class="nav-item"><a class="nav-link active" href="#"> Pages </a></li>
+                <li class="nav-item"><a class="nav-link" href="#"> Theme </a></li>
+                <li class="nav-item"><a class="nav-link" href="#"> Store </a></li>
+                <li class="nav-item"><a class="nav-link" href="#"> Apps </a></li>
+                <li class="nav-item"><a class="nav-link" href="#"> Settings </a></li>
+            </ul>
+        </div>
 
-<!--        </h5>-->
+        <div class="col-xs-1 wbdv-margins-left-right-auto">
+            <i class="fa fa-plus fa-2x pull-right wdbv-plus-nudge" aria-hidden="true"></i>
+        </div>
+
+        <!--        </h5>-->
     </div>
 
-<!--</div>-->
-
+    <!--</div>-->
 
 
     <!-- BODY -->
 
+    <!--    <div class="grid-container">-->
     <div class="row">
+        <!-- Modules -- Left -->
+        <div class=" col-4 wbdv-modules-sidebar " >
+            <!-- List of Topics -->
+            <ul class="list-group ">
+                <li class="list-group-item wbdv-module-list-item-style"> Module 1 - jQuery <i
+                        class="fa fa-times pull-right"></i></li>
+                <li class="list-group-item wbdv-module-list-item-style active"> Module 2 - React <i
+                        class="fa fa-times pull-right"></i></li>
+                <li class="list-group-item wbdv-module-list-item-style"> Module 3 - Redux <i
+                        class="fa fa-times pull-right"></i></li>
+                <li class="list-group-item wbdv-module-list-item-style"> Module 4 - Native <i
+                        class="fa fa-times pull-right"></i></li>
+                <li class="list-group-item wbdv-module-list-item-style"> Module 5 - Angular <i
+                        class="fa fa-times pull-right"></i></li>
+                <li class="list-group-item wbdv-module-list-item-style"> Module 6 - Node <i
+                        class="fa fa-times pull-right"></i></li>
+                <li class="list-group-item wbdv-module-list-item-style"> Module 7 - Mongo <i
+                        class="fa fa-times pull-right"></i></li>
+                <li class="list-group-item wbdv-module-list-item-style-transparent"><i
+                        class="fa fa-plus pull-right"></i></li>
+            </ul>
 
-        <div class="col-4"> <!-- Declare leftHand nav bars -->
-            <div>
-                <!-- List of Topics -->
-                <ul class="list-group wbdv-module-nudge ">
-                    <li class="list-group-item wbdv-module-list-item-style">  Module1 - jQuery <i class="fa fa-times pull-right"></i> </li>
-                    <li class="list-group-item active"> Module 2 - React <i class="fa fa-times pull-right"></i></li>
-                    <li class="list-group-item"> Module 3 - Redux  <i class="fa fa-times pull-right"></i></li>
-                    <li class="list-group-item"> Module 4 - Native <i class="fa fa-times pull-right"></i></li>
-                    <li class="list-group-item"> Module 5 - Angular  <i class="fa fa-times pull-right"></i></li>
-                    <li class="list-group-item"> Module 6 - Node  <i class="fa fa-times pull-right"></i></li>
-                    <li class="list-group-item"> Module 7 - Mongo  <i class="fa fa-times pull-right"></i></li>
-                    <li class="list-group-item"><i class="fa fa-plus pull-right"></i></li>
-                </ul>
-            </div>
+
         </div>
-        <div class="col-8 wdbv-widget-nudge-right"> <!-- Declare rightHand nav bars -->
-<!--            <div>-->
-<!--                <ul class="nav nav-tabs">-->
-<!--                    <li class="nav-item"><a class="nav-link" href="#">Tags</a></li>-->
-<!--                    <li class="nav-item"><a class="nav-link active" href="#">Elements</a></li>-->
-<!--                    <li class="nav-item"><a class="nav-link" href="#">Attributes</a></li>-->
-<!--                    <li class="nav-item"><a class="nav-link" href="#">Headings</a></li>-->
-<!--                    <li class="nav-item"><a class="nav-link" href="#">Tables</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
 
-            <br/>
 
+
+        <!-- Widgets -- Right -->
+        <div class="col-8 wbdv-widgets wdbv-widget-nudge-right">
+
+<!--            <br/>-->
+
+            <div>
+
+            <!-- Widgets:  Nav Pills -->
             <div>
                 <ul class="nav nav-pills">
                     <li class="nav-item"><a class="nav-link " href="#"> Topic 1 </a></li>
@@ -92,31 +103,55 @@
 
             <br/>
 
+            <div class="row  wbdv-widget-save-preview pull-right">
+                <a href="#" class="btn btn-success wbdv-widget-save-button">
+                    Save
+                </a>
+                <div class="wbdb-preview-switch">
+                    <label for ="preview-switch" >
+                        <h5> Preview </h5>
+                    </label>
+                    <label class="switch">
+                        <input type="checkbox" id="preview-switch">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <br/>
+            <br/>
+
+
+            <!-- Widgets: heading -->
             <div class="wbdv-light-gray-border">
-                <h2>Widgets</h2>
+                <!--                <h2>Widgets</h2>-->
                 <h3>
                     Heading Widget
-                    <span class="pull-right">
-                    <a href="#" class="btn btn-warning">
-                        <i class="fa fa-arrow-up"></i>
-                    </a>
-                    <a href="#" class="btn btn-warning">
-                        <i class="fa fa-arrow-down"></i>
-                    </a>
-                    <select>
-                        <option>Heading</option>
-                        <option>YouTube</option>
-                        <option>Slides</option>
-                        <option>Image</option>
-                        <option>List</option>
-                    </select>
-                    <a href="#" class="btn btn-danger">
-                        <i class="fa fa-trash"></i>
-                    </a>
-                        </span>
+                    <span class="pull-right wbdv-widget-heading-button">
+                        <a href="#" class="btn btn-warning">
+                            <i class="fa fa-arrow-up"></i>
+                        </a>
+                        <a href="#" class="btn btn-warning">
+                            <i class="fa fa-arrow-down"></i>
+                        </a>
+
+                            <select>
+                                <option>Heading</option>
+                                <option>YouTube</option>
+                                <option>Slides</option>
+                                <option>Image</option>
+                                <option>List</option>
+                            </select>
+
+                        <a href="#" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </span>
                 </h3>
-                <input class="form-control" placeholder="Heading Text"/>
-                <select class="form-control">
+
+                <!-- Widget : input fields -->
+                <input class="form-control wbdv-widget-input" placeholder="Heading Text"/>
+                <select class="form-control wbdv-widget-input">
                     <option>Heading 1</option>
                     <option>Heading 2</option>
                     <option>Heading 3</option>
@@ -124,19 +159,20 @@
                     <option>Heading 5</option>
                     <option>Heading 6</option>
                 </select>
-                <input class="form-control" placeholder="Heading Text"/>
+                <input class="form-control wbdv-widget-input" placeholder="Heading Text"/>
+                <h3> Preview </h3>
+                <h2> Heading Text </h2>
+
+
+            </div>
             </div>
         </div>
+
     </div>
-
-<div class="grid-container">
-    <div class="item1">Header</div>
-    <div class="item2">Menu</div>
-    <div class="item3">Main</div>
-    <div class="item4">Right</div>
-    <div class="item5">Footer</div>
 </div>
 
-</div>
+<i class="fa fa-plus-circle pull-right fa-3x wbdv-add-course-button wbdv-sticky-add-course-button"
+   aria-hidden="true"></i>
+
 </body>
 </html>

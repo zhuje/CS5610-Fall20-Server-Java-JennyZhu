@@ -1,0 +1,33 @@
+.new-section {
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+    background: #eee;
+}
+.yellow {
+    background-color: yellow;
+}
+
+.wbdv-left{
+    background-color: purple;
+}
+
+.wbdv-right{
+    background-color: #343a40;
+}
+
+body {
+    background: url(1px.png) repeat-y;
+    background-size: 50% auto;
+    width: 100%;}
+
+
+
+
+.item-a {
+    grid-column-start: 2;
+    grid-column-end: five;
+    grid-row-start: row1-start;
+    grid-row-end: 3;
+    background-color: steelblue;
+}
