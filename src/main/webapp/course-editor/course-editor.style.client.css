@@ -27,7 +27,7 @@
     margin: 5px;
 }
 
-.wbdv-module-nudge {
+.wbdv-module-nudge{
     margin-left:100px;
 }
 
@@ -68,17 +68,17 @@ a {
 
 
 body {
-    padding-top: 100px;
+    padding-top: 85px;
     background-color: lightgrey;
 }
 
 .wbdv-module-list-item-style {
     border-radius: .25rem;
-    margin-top: 12px;
+    /*margin-top: 12px;*/
     margin-bottom: 12px;
     margin-left: 20px;
     margin-right: 20px;
-    background-color: dimgrey;
+    background-color: #343a40;
     color: white;
 }
 
@@ -113,6 +113,7 @@ body {
     padding-left: 50px;
     background-color: whitesmoke;
     padding: 35px;
+    bottom:0;
 }
 
 .wbdv-widget-save-button{
@@ -213,13 +214,24 @@ html, body {
     margin: 0;
 }
 
-#sidebar, #content {
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
     height: 100%;
-    overflow:auto;
-    float:left;
-    transition: width .35s;
+    overflow: auto;
 }
 
+
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+    width: 1000px;
+    position: fixed;
+}
 
 
 
@@ -228,6 +240,12 @@ html, body {
     background-color: #1f2429;
     padding: 19px;
 }
+
+/*allow components below header to be height of 100% -- i.e. fills the rest of the space to the bottom*/
+.wbdv-below-header{
+    height: 100%;
+}
+
 
 
 /**** Bottom Sticky Plus Button *****/
@@ -277,3 +295,12 @@ this is a comment
 
 
 
+
+
+
+
+/************************* TEST **************/
+
+ul {
+    display: inline;
+}
