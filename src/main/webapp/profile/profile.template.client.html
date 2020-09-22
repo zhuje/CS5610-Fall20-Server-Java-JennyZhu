@@ -19,35 +19,32 @@
 
     <!-- Successful Update alert -->
 
-    <div class = "alert alert-success" class="form-control" class="wbdv message"/>
+    <div class = "alert alert-success" class="form-control" class="wbdv-message"/>
         Profile Successfully saved
     </div>
 
 
     <!-- Username (read-only) -->
     <div class = "form-group row">
-        <label for = "usernameInput" class="col-sm-2 col-form-label"
-                class="wbdv-field wbdv-username"> Username </label>
+        <label for = "usernameInput" class="col-sm-2 col-form-label"> Username </label>
         <div class="col-sm-10">
-        <input id= "usernameInput" value="Alice" type="text" class="form-control" readonly/>
+        <input id= "usernameInput" value="Alice" type="text" class="form-control wbdv-field wbdv-username" readonly/>
         </div>
     </div>
 
     <!-- Password -->
     <div class = "form-group row">
-        <label for = "passwordInput" class="col-sm-2 col-form-label"
-               class = "wbdv-field wbdv-password" > Password </label>
+        <label for = "passwordInput" class="col-sm-2 col-form-label"> Password </label>
         <div class="col-sm-10">
-            <input id = "passwordInput" type ="password" class="form-control" placeholder="123qwe#$%"/>
+            <input id = "passwordInput" type ="password" class="form-control wbdv-field wbdv-password" placeholder="123qwe#$%"/>
         </div>
     </div>
 
     <!-- Phone Number  -->
     <div class = "form-group row">
-        <label for = "phoneInput" class ="col-sm-2 col-form-label" class="wbdv-field wbdv-phone">
-            Phone </label>
+        <label for = "phoneInput" class ="col-sm-2 col-form-label" > Phone </label>
         <div class = "col-sm-10">
-         <input id="phoneInput" type ="tel" placeholder="(555)-123-4324"  class="form-control"/>
+         <input id="phoneInput" type ="tel" placeholder="(555)-123-4324"  class="form-control wbdv-field wbdv-phone"/>
         </div>
     </div>
 
@@ -56,14 +53,13 @@
     <div class = "form-group row">
     <!-- ' type="email" ' validates if it is in an email format -->
     <!-- on mobile it will bring up the right keyboard-->
-    <label for = "emailInput" class = "col-sm-2 col-form-label" class="wbdv-field wbdv-email">
-        Email </label>
+    <label for = "emailInput" class = "col-sm-2 col-form-label"> Email </label>
         <div class = "col-sm-10">
         <input id="emailInput"
                 title="Enter your email"
                 placeholder = "alice@wonderland.com"
                 type="email"
-                class= "form-control" />
+                class= "form-control wbdv-field wbdv-email" />
         </div>
     </div>
 
@@ -72,7 +68,7 @@
     <div class = "form-group row">
         <label for ="rolFld" class="col-sm-2 col-form-label">  Role: </label>
         <div class = "col-sm-10">
-            <select id = "rolFld" class = "form-control" class="wbdv-field wbdv-role" />
+            <select id = "rolFld" class = "form-control" class="wbdv-field wbdv-role" readonly/>
                 <option value="Faculty"> Faculty </option>
                 <option value="Student"> Student </option>
                 <option value="Admin"> Admin </option>
@@ -88,9 +84,9 @@
         <!-- Input value for date has to be the syntax year-month-date otherwise it doesn't work -->
         <!-- The rendering of the format depends on the location of your browser, looks like 11/21/2005 cuz we're in the USA-->
         <!-- In europe the date rendering is year, month, day -->
-       <label for = "dobInput" class = "col-sm-2 col-form-label" class="wbdv-field wbdv-dob"> DOB </label>
+       <label for = "dobInput" class = "col-sm-2 col-form-label"> DOB </label>
         <div class = "col-sm-10">
-        <input id = "dobInput" value="2005-11-21" type="date" class = "form-control"/>
+        <input id = "dobInput" value="2005-11-21" type="date" class = "form-control wbdv-field wbdv-dob"/>
         </div>
     </div>
 

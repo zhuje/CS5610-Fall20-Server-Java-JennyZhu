@@ -1,13 +1,12 @@
 
+/* Add Course Button Formatting */
 
 .wbdv-add-course-button {
     position: absolute;
     color: red;
 }
 
- /*
- this is a comment
-  */
+
 .wbdv-sticky-add-course-button {
     position: fixed;
     right: 15px;
@@ -21,11 +20,7 @@
     right: 10px;
 }
 
-
-/**
- * the <div container> for the sticky header stretches across the whole screen, not just encompassing the elements
- * this is done by indicating 0px for top, left, right
- */
+ /* Header and Body Formatting for Page Layout */
 .wbdv-sticky-header {
     position: fixed;
     top: 0px;
@@ -43,13 +38,12 @@
     right: 20px;
 }
 
-/**
- * This saves the top 90px for the fixed sticky header (so there's not overlap with the body when we scroll)
- */
+
 body {
     padding-top: 90px;
 }
 
+/* Component Spacing */
 
 .wbdv-nudge-15px-down {
     position: relative;
