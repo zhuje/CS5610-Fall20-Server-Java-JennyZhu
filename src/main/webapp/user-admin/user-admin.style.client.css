@@ -1,0 +1,10 @@
+
+
+/* Hide the template row in the user-admin table.
+Use the html table row as a template and use javascript to copy
+additional rows onto the DOM.
+*/
+
+.wbdv-hidden{
+    display: none;
+}
