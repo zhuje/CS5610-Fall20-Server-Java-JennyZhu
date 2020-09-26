@@ -33,6 +33,9 @@ let clone // this will be the clone of tbody table rows from the template
 let $createBtn
 let $usernameFld,$firstNameFld, $lastNameFld,$roleFld
 
+// Calls the function in the services directory to retrieve data
+// from a remote server
+const userService = new AdminUserServiceClient()
 
 
 // This way is bad practice because you only delete from the data model and not from the DOM.
@@ -62,17 +65,16 @@ const renderUsers = (users) => {
         clone = template.clone() // .clone() is a jQuery function. Here we're copying the template table row with user data and assigning it to 'clone'
         clone.removeClass("wbdv-hidden") // removes the original template ONLY FROM THE CLONE -- the original template still in the DOM but is no longer displayed on the viewport
 
-        clone.find(".wbdv-username").html(user.username) // within the clone ( <tr class="wbdv-template" ) FIND the element <td class"wbdv-username"> then REPLACE HTML with my dataset's usernames
-        clone.find(".wbdv-first-name").html(user.fName)
-        clone.find(".wbdv-last-name").html(user.lName)
+        // NOTE: IN JSON Object -- .find() still refers to the clone, but the '.html(user.username)' -- the 'users.username' refers to the JSON object we passed in to the argument ( ' const renderUsers = (users) => { ' ). So make sure the variable user.USERNAME matches the JSON object variables
+        clone.find(".wbdv-username").html(user.username) // IN STATIC local array: within the clone ( <tr class="wbdv-template" ) FIND the element <td class"wbdv-username"> then REPLACE (.html) with data from my local dataset with the variable name 'username'
+        clone.find(".wbdv-first-name").html(user.first)
+        clone.find(".wbdv-last-name").html(user.last)
         clone.find(".wbdv-role").html(user.role)
 
         clone.find(".wbdv-remove").click(()=>deleteUser2(i)) // .click a type of 'event' from jQuery -- so every time we click the element with the class ".wbdv-remove" we create an event for the eventHandler instance "deleteUser1" to respond to. the eventHandler is declared above in a lamba.
         console.log(users)
 
         tbody.append(clone) // now append the clone (copies of the table row) to the table body (tbody)
-
-
     }
     container.append(ul)
 }
@@ -124,9 +126,12 @@ const createUser = () => {
 // but the element hasn't been loaded in the DOM and your .js commands
 // won't take effect.
 const init = () =>  { // create a lamda that encapsulates all our .js commands
+
+
+
+
     const heading1 = jQuery("h1") // grab all 'h1' tags to manipulate those objects
     // heading1.css("color", "yellow") // change its color to yellow
-
 
     const container = $(".container ")
     tbody = $("tbody") // initialize 'tbody' (.js variable) by assigning it to the 'tbody' in the html ($("tbody"))
@@ -142,7 +147,13 @@ const init = () =>  { // create a lamda that encapsulates all our .js commands
     // print out array
     // console.log(users)
 
-    renderUsers(users)
+    userService.findAllUsers()
+        .then((users) => { // then retrieve 'body' of the JSON transmission -- the body is the actual data set from the remote server (not the meta data). this is also an asynchronous process because we're streaming in the 'body:ReadableStream'
+            console.log(users)
+            renderUsers(users)
+        })
+
+
 
 
 }
