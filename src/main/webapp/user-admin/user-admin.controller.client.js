@@ -65,7 +65,7 @@ const renderUsers = (users) => {
         clone = template.clone() // .clone() is a jQuery function. Here we're copying the template table row with user data and assigning it to 'clone'
         clone.removeClass("wbdv-hidden") // removes the original template ONLY FROM THE CLONE -- the original template still in the DOM but is no longer displayed on the viewport
 
-        // NOTE: IN JSON Object -- .find() still refers to the clone, but the '.html(user.username)' -- the 'users.username' refers to the JSON object we passed in to the argument ( ' const renderUsers = (users) => { ' ). So make sure the variable user.USERNAME matches the JSON object variables
+        // NOTE: IN JSON Object -- .find() still refers to the clone, but the '.html(user.username)' -- the 'users.username' refers to the JSON object we passed in to the argument ( ' const renderUsers = (users) => { ' ). So make sure the variable user.USERNAME matches the JSON object
         clone.find(".wbdv-username").html(user.username) // IN STATIC local array: within the clone ( <tr class="wbdv-template" ) FIND the element <td class"wbdv-username"> then REPLACE (.html) with data from my local dataset with the variable name 'username'
         clone.find(".wbdv-first-name").html(user.first)
         clone.find(".wbdv-last-name").html(user.last)
@@ -76,13 +76,27 @@ const renderUsers = (users) => {
 
         tbody.append(clone) // now append the clone (copies of the table row) to the table body (tbody)
     }
-    container.append(ul)
+    // container.append(ul)
 }
 
-// This method deletes uses from both the DOM and the original dataset (data model).
-const deleteUser2  = (index) => { // index is the index of the 'users' array that we want to delte
-    users.splice(index, 1) // delete the index using 'splice'
-    renderUsers(users)
+
+/*
+deleteUsers2(_index) --
+@param _index , represents the index of the 'users' array to be deleted
+User the '_index' of the user to delete to obtain the user from the 'users'array
+Obtain the index of the user you're trying to delete. Then get their user ID to delete it from the remote server.
+Go to the remote server to delete -- then once we get a response from the server, splice (delete it) on
+our local cache and re-render on the browser.
+ */
+const deleteUser2  = (_index) => { // index is the index of the 'users' array that we want to delte
+    const user = users[_index]
+    const userID = user.id
+    userService.deleteUser(userID)
+        .then(response => {
+            users.splice(_index, 1) // delete the index using 'splice'
+            renderUsers(users)
+        })
+
 
 }
 
@@ -147,9 +161,12 @@ const init = () =>  { // create a lamda that encapsulates all our .js commands
     // print out array
     // console.log(users)
 
+    // GET data from the remote server, save it to our local cache 'users'
+    // then render it
     userService.findAllUsers()
-        .then((users) => { // then retrieve 'body' of the JSON transmission -- the body is the actual data set from the remote server (not the meta data). this is also an asynchronous process because we're streaming in the 'body:ReadableStream'
-            console.log(users)
+        .then((_users) => { // then retrieve 'body' of the JSON transmission -- the body is the actual data set from the remote server (not the meta data). this is also an asynchronous process because we're streaming in the 'body:ReadableStream'
+            console.log(_users)
+            users =_users
             renderUsers(users)
         })
 
