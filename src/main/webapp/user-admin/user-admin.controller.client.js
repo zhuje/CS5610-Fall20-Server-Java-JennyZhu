@@ -166,16 +166,20 @@
 
     }
 
+    const findAllUsers = () => {
+        userService.findAllUsers()
+            .then((_users) => {
+                console.log(_users)
+                users = _users
+                renderUsers(users)
+            })
+
+    }
+
     const init = () => {
-
-
         const heading1 = jQuery("h1")
         heading1
-            .css("color", "yellow")
-            .css("backgroundColor", "red")
             .html("User Administrator")
-            .append(" - Only for Administrators")
-            .append("<button>Ok</button>")
 
         // instantiate variables that correspond to elements with specified identifiers in user-admin.template.client.html
         const container = $(".container")
@@ -189,12 +193,14 @@
         $(".wbdv-update").click(updateSelecteUser)
 
         // console.log(users)
-        userService.findAllUsers()
-            .then((_users) => {
-                console.log(_users)
-                users = _users
-                renderUsers(users)
-            })
+        // userService.findAllUsers()
+        //     .then((_users) => {
+        //         console.log(_users)
+        //         users = _users
+        //         renderUsers(users)
+        //     })
+
+        findAllUsers()
 
     }
     $(init)
