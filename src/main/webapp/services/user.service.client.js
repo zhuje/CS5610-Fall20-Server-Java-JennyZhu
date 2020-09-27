@@ -27,8 +27,8 @@ function AdminUserServiceClient() {
 
     // TODO
     function findUserById(userId) {
-
-
+        return fetch(`https://wbdv-generic-server.herokuapp.com/api/zhuje/users/${userId}`)
+            .then(response => response.json())
     }
 
     // PUT

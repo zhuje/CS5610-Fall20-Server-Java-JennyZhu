@@ -67,16 +67,40 @@
             clone.find(".wbdv-last-name").html(user.last)
             clone.find(".wbdv-role").html(user.role)
             clone.find(".wbdv-remove").click(() => deleteUser2(i))
-            clone.find(".wbdv-edit").click(() => selectUser(i))
+            clone.find(".wbdv-edit").click(() => selectUser(i)) // 'i' is the index of the user in the usersArray
 
             tbody.append(clone)
         }
         container.append(ul)
     }
 
+    const renderUser = (user) => {
+        tbody.empty()
+
+        clone = template.clone()
+        clone.removeClass("wbdv-hidden")
+
+        clone.find(".wbdv-username").html(user.username)
+        clone.find(".wbdv-first-name").html(user.first)
+        clone.find(".wbdv-last-name").html(user.last)
+        clone.find(".wbdv-role").html(user.role)
+
+        tbody.append(clone)
+    }
+
+    const findUserById = (_index) => {
+        const user = users[_index]
+        const userId = user._id
+        userService.findUserById(userId)
+            .then(response => {
+                renderUser(user)
+            })
+    }
+
     const deleteUser2 = (_index) => {
         const user = users[_index]
         const userId = user._id
+        console.log(userId)
         userService.deleteUser(userId)
             .then(response => {
                 users.splice(_index, 1)
@@ -130,14 +154,14 @@
     }
 
     /*
-     * updateSelecteUser() -- edits the selected user.
+     * updateUser() -- edits the selected user.
      * Obtains the value of input fields. PUT the changes in the remote server using
      * 'userService.updateUser(userID, user) -- the 'user' is an object and you can
      * populate it in the argument. THEN when we get a response from the remote server
      * re-render our local cache using the updated information JSON object (response)
      *  from the remote server. We must declare which attributes we want to update.
      */
-    const updateSelecteUser = () => {
+    const updateUser = () => {
         // Store edit values from input.
         const newUsername = $("#usernameFld").val()
         const newFirstName = $("#firstNameFld").val()
@@ -190,7 +214,7 @@
         $usernameFld = $("#usernameFld")
         $lastNameFld = $("#lastNameFld")
         $roleFld = $("#roleFld")
-        $(".wbdv-update").click(updateSelecteUser)
+        $(".wbdv-update").click(updateUser)
 
         // console.log(users)
         // userService.findAllUsers()
