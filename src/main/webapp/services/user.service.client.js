@@ -7,39 +7,42 @@ function AdminUserServiceClient() {
     this.url = 'https://wbdv-generic-server.herokuapp.com/api/jannunzi/users';
     var self = this;
 
-
-    function createUser(user) {  }
-
-    /*
-    findAllUsers() -- retrieve information from a remote server
-    to fetch all users in the server's database.
-    fetch('https://wbdv-generic-server.herokuapp.com/api/jannunzi/users') // access the remote server
-    .then(response => {  // asyncronously retrieve ('.then()') the JSON information ('response')
-     response.json() // parse the JSON information from the remote server using '.json'
-     */
+    // DEFAULT method is : GET
     function findAllUsers() {
         return fetch('https://wbdv-generic-server.herokuapp.com/api/jannunzi/users')
-            .then(response => response.json() )
+            .then(response => response.json())
     }
 
+    // POST
+    function createUser(user) {
+        return fetch('https://wbdv-generic-server.herokuapp.com/api/jannunzi/users', {
+            method: 'POST', // adds new data
+            body: JSON.stringify(user), // convert user objects to string
+            headers: {
+                'content-type': 'application/json'
+            } // The section above will POST the newUser to the remote server
+        })
+            .then(response => response.json())  // then we'll come back from the remote server with a response and update our local cache
+    }
+
+    // TODO
     function findUserById(userId) {  }
-    function updateUser(userId, user) { }
 
+    // PUT
+    function updateUser(userId, user) {
+        return fetch(`https://wbdv-generic-server.herokuapp.com/api/jannunzi/users/${userId}`, {
+            method: 'PUT', // Edits data
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+    }
 
-
-
-    /*
-     deleteUser(userId) -- deletes user from the remote server
-     fetch(URL + userID, <optional JSON configuration>{}) // 'userID' specifies which user you want to delete
-     // the optional JSON configuration allows you to DELETE rather than the default GET
-
-     */
+    // DELETE
     function deleteUser(userId) {
         return fetch('https://wbdv-generic-server.herokuapp.com/api/jannunzi/users/' + userId, {
             method: 'DELETE'
         })
-
     }
 }
-
-

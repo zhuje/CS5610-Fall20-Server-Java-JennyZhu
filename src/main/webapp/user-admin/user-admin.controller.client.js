@@ -1,185 +1,203 @@
+(function () { // encapsulate
 
-// static DATASET we're creating -- this is an array of 'users'. Typically we would
-// get a dataset from a server but for simplicity we're going to manually create a
-// simply data set to iterate over and append onto the DOM.
+    let users = [
+        {
+            username: 'alice',
+            fName: 'Alice',
+            lName: 'Wonderland',
+            role: 'Faculty'
+        },
+        {
+            username: 'bob',
+            fName: 'Robert',
+            lName: 'Marley'
+        },
+        {
+            username: 'charlie',
+            fName: 'Charlie',
+            lName: 'Garcia'
+        }
+    ]
 
-let users = [
-    {
-        username: 'alice',
-        fName: 'Alice',
-        lName: 'Wonderland',
-        role:'Faculty'
-    },
-    {
-        username: 'bob',
-        fName: 'Bob',
-        lName: 'Marley',
-        role: "Student"
-    },
-    {
-        username: 'charlie',
-        fName: 'Charlie',
-        lName: 'Garcia',
-        role: "Student"
+    let tbody
+    let template
+    let clone
+    let $createBtn
+    let $usernameFld, $firstNameFld, $lastNameFld, $roleFld
+    const userService = new AdminUserServiceClient()
+
+    const deleteUser1 = (event) => {
+        const deleteBtn = $(event.currentTarget)
+        // deleteBtn.parent().parent().parent().remove()
+        deleteBtn.parents("tr.wbdv-template").remove()
+        // console.log(deleteBtn)
     }
-]
 
-// declare more variables with 'let'
-let tbody  // variables doesn't need to match the element, just  a style choice
-let template  // tbody  TABLE ROW you want to copy from the table - we're gonna use it as a template
-let clone // this will be the clone of tbody table rows from the template
-
-// naming convention is to put '$' infront of variable name tha references an object in the DOM
-let $createBtn
-let $usernameFld,$firstNameFld, $lastNameFld,$roleFld
-
-// Calls the function in the services directory to retrieve data
-// from a remote server
-const userService = new AdminUserServiceClient()
-
-
-// This way is bad practice because you only delete from the data model and not from the DOM.
-// The number of rows displayed on the data model and in the DOM should match -- that why
-// we need to reimplement a way to delete a user using 'deleteUser2'.
-// declare and instance for an eventHandler -- every time we click the "X" in the viewport (class ".wbdv-delete) we call this EventHandler
-// const deleteUser1 = (event) => { // (event) is a jQuery function equivalent to eventHandler
-//     const deleteBtn = $(event.currentTarget) // wrap the current target (element with the class '.wbdv-delete') in the jQuery keyword '$' to allow it access to all of jQuery's functions
-//     // deleteBtn.parent().parent().parent().remove();  // 'parent()' allows you to search UP the down to the parent element
-//     deleteBtn.parents("tr.wbdv.template").remove()
-//     console.log("delete user 1")
-// }
-
-
-// renderUsers -- renders the users every time we manipulate the table (add/remove user).
-// It empties the table and repopulates it with the current datta model after we add/remove users.
-const renderUsers = (users) => {
-    tbody.empty(); // upon every call we empty the table data and rerender
-    // print out each 'users' object username only
-    const ul = $("<ul>")
-    for(let i=0; i<users.length; i++){
-        const user = users[i];
-        // console.log(user.username);
-        const li =$("<li>" + user.username + "</li>")
-        ul.append(li)
-
-        clone = template.clone() // .clone() is a jQuery function. Here we're copying the template table row with user data and assigning it to 'clone'
-        clone.removeClass("wbdv-hidden") // removes the original template ONLY FROM THE CLONE -- the original template still in the DOM but is no longer displayed on the viewport
-
-        // NOTE: IN JSON Object -- .find() still refers to the clone, but the '.html(user.username)' -- the 'users.username' refers to the JSON object we passed in to the argument ( ' const renderUsers = (users) => { ' ). So make sure the variable user.USERNAME matches the JSON object
-        clone.find(".wbdv-username").html(user.username) // IN STATIC local array: within the clone ( <tr class="wbdv-template" ) FIND the element <td class"wbdv-username"> then REPLACE (.html) with data from my local dataset with the variable name 'username'
-        clone.find(".wbdv-first-name").html(user.first)
-        clone.find(".wbdv-last-name").html(user.last)
-        clone.find(".wbdv-role").html(user.role)
-
-        clone.find(".wbdv-remove").click(()=>deleteUser2(i)) // .click a type of 'event' from jQuery -- so every time we click the element with the class ".wbdv-remove" we create an event for the eventHandler instance "deleteUser1" to respond to. the eventHandler is declared above in a lamba.
-        console.log(users)
-
-        tbody.append(clone) // now append the clone (copies of the table row) to the table body (tbody)
+    /*
+    param @ index -- is the index of the selected 'user' from the 'users' Array
+    selectUser(index) -- Takes the 'index' of the user reference the selected user's
+    attributes
+    #usernameFld -- corresponds to the 'id' of the html eleemnt
+    users[index] -- gets the index of the selected user to access its attributes
+    .username -- is the identifier from the remote server
+     */
+    let selectedUserIndex = -1 // initialize selectedUserIndex to -1 bc indexing starts at 0 -- so -1 means no user selected to start
+    const selectUser = (index) => { // (index) is the selected user's index in the array of users
+        selectedUserIndex = index // update the 'selectedUserIndex'
+        $("#usernameFld").val(users[index].username)
+        $("#firstNameFld").val(users[index].first)
+        $("#lastNameFld").val(users[index].last)
+        $("#roleFld").val(users[index].role)
     }
-    // container.append(ul)
-}
 
+    const renderUsers = (users) => {
+        tbody.empty()
+        const ul = $("<ul>")
+        for (let i = 0; i < users.length; i++) {
+            const user = users[i]
+            // console.log(user.username)
+            const li = $("<li>" + user.username + "</li>")
+            ul.append(li)
 
-/*
-deleteUsers2(_index) --
-@param _index , represents the index of the 'users' array to be deleted
-User the '_index' of the user to delete to obtain the user from the 'users'array
-Obtain the index of the user you're trying to delete. Then get their user ID to delete it from the remote server.
-Go to the remote server to delete -- then once we get a response from the server, splice (delete it) on
-our local cache and re-render on the browser.
- */
-const deleteUser2  = (_index) => { // index is the index of the 'users' array that we want to delte
-    const user = users[_index]
-    const userID = user.id
-    userService.deleteUser(userID)
-        .then(response => {
-            users.splice(_index, 1) // delete the index using 'splice'
-            renderUsers(users)
+            clone = template.clone()
+            clone.removeClass("wbdv-hidden")
+
+            clone.find(".wbdv-username").html(user.username)
+            clone.find(".wbdv-first-name").html(user.first)
+            clone.find(".wbdv-last-name").html(user.last)
+            clone.find(".wbdv-role").html(user.role)
+            clone.find(".wbdv-remove").click(() => deleteUser2(i))
+            clone.find(".wbdv-edit").click(() => selectUser(i))
+
+            tbody.append(clone)
+        }
+        container.append(ul)
+    }
+
+    const deleteUser2 = (_index) => {
+        const user = users[_index]
+        const userId = user._id
+        userService.deleteUser(userId)
+            .then(response => {
+                users.splice(_index, 1)
+                renderUsers(users)
+            })
+    }
+
+    // const clearFld = () => {
+    //     console.log("clearing Fld ")
+    //     $usernameFld.val("")
+    //     $firstNameFld.val("")
+    //     $lastNameFld.val("")
+    // }
+
+    /*
+    createUser()
+    In the init() function there is a actionListener on the add button. Once
+    it is clicked it calls here, createUser(). Then we get the value of the input fields
+    with the .val() function. Then clear the input fields with (""). Then create a
+    new object 'newUser' this will get 'pushed' to the remote server.
+     */
+    const createUser = () => {
+        // get input value
+        console.log("create user")
+        const username = $usernameFld.val()
+        const firstName = $firstNameFld.val()
+        const lastName = $lastNameFld.val()
+        const role = $roleFld.val()
+        console.log(role)
+
+        // clear input fields in the .html
+        $usernameFld.val("")
+        $firstNameFld.val("")
+        $lastNameFld.val("")
+        //$roleFld.get(0).selectedIndex = 0;  // resets role dropdown back to first item
+
+        // create 'newUser' object
+        const newUser = {
+            username: username,
+            first: firstName,
+            last: lastName,
+            role: role
+        }
+
+        // This block communicates with the remote server -- add newUser to remote server and rerender with updated local cache.
+        userService.createUser(newUser)
+            .then(actualNewUser => {
+                users.push(actualNewUser)
+                renderUsers(users)
+            })
+    }
+
+    /*
+     * updateSelecteUser() -- edits the selected user.
+     * Obtains the value of input fields. PUT the changes in the remote server using
+     * 'userService.updateUser(userID, user) -- the 'user' is an object and you can
+     * populate it in the argument. THEN when we get a response from the remote server
+     * re-render our local cache using the updated information JSON object (response)
+     *  from the remote server. We must declare which attributes we want to update.
+     */
+    const updateSelecteUser = () => {
+        // Store edit values from input.
+        const newUsername = $("#usernameFld").val()
+        const newFirstName = $("#firstNameFld").val()
+        const userId = users[selectedUserIndex]._id
+        const newLastName = $("#lastNameFld").val()
+        const newRole = $ ("#roleFld").val()
+
+        //clearFld()
+
+        //  PUT edited values into remote server THEN update local cache with the RESPONSE (updated JSON object).
+        // pass the 'userID' into the function to reference the selected user
+        // pass 'user' as an object with the updated attributes 'newUsername', etc.
+        userService.updateUser(userId, {
+            username: newUsername,
+            first: newFirstName,
+            last: newLastName,
+            role: newRole
         })
+            .then(response => {     // chain the command 'userService.updateUser' -- once we get a JSON object back from the remote server (response) update the local cache
+                users[selectedUserIndex].username = newUsername // server send a JSON object, the 'response',  -- use the response to update local cache
+                users[selectedUserIndex].first = newFirstName
+                users[selectedUserIndex].last = newLastName
+                users[selectedUserIndex].role = newRole
+                renderUsers(users) // re-render (display) the updated information
+            })
 
-
-}
-
-// createUsers() -- creates new users in the data model.
-// It reads in the html 'id's of each input field and populates the
-// object 'newUsers' with the attributes. The table then gets
-// repopulated with the new user added to the table.
-// The <input id=""> are readin
-// in the init() function. Then the evenHandler in the init function
-// "$createBtn = $(".wbdv-create").click(createUser)" will detect
-// with the 'add" buttons has been clicked.
-const createUser = () => {
-    console.log("create user")
-
-    // Read-in input fields and get the values
-    const username = $usernameFld.val() // get the value of the <input id="FooID'>
-    const firstName = $firstNameFld.val()
-    const lastName = $lastNameFld.val()
-    const role = $roleFld.val()
-
-    // Write to the input fields -- clear them with "" syntax
-    $usernameFld.val("")
-    $firstNameFld.val("")
-    $lastNameFld.val("")
-    $roleFld.val("")
-
-
-    // create a newUser with the following attributes
-    const newUser = {
-        username: username,
-        fName: firstName,
-        lName: lastName,
-        role: role
     }
-    users.push(newUser) // append newUser to the array of 'users' using 'push'
-    renderUsers(users)  // rerender the whole table with the newly added user
-}
+
+    const init = () => {
 
 
-// Allow the DOM to load -- otherwise .js will try to manipulate it
-// but the element hasn't been loaded in the DOM and your .js commands
-// won't take effect.
-const init = () =>  { // create a lamda that encapsulates all our .js commands
+        const heading1 = jQuery("h1")
+        heading1
+            .css("color", "yellow")
+            .css("backgroundColor", "red")
+            .html("User Administrator")
+            .append(" - Only for Administrators")
+            .append("<button>Ok</button>")
+
+        // instantiate variables that correspond to elements with specified identifiers in user-admin.template.client.html
+        const container = $(".container")
+        tbody = $("tbody")
+        template = $("tr.wbdv-template")
+        $createBtn = $(".wbdv-create").click(createUser)
+        $firstNameFld = $("#firstNameFld")
+        $usernameFld = $("#usernameFld")
+        $lastNameFld = $("#lastNameFld")
+        $roleFld = $("#roleFld")
+        $(".wbdv-update").click(updateSelecteUser)
+
+        // console.log(users)
+        userService.findAllUsers()
+            .then((_users) => {
+                console.log(_users)
+                users = _users
+                renderUsers(users)
+            })
+
+    }
+    $(init)
 
 
-
-
-    const heading1 = jQuery("h1") // grab all 'h1' tags to manipulate those objects
-    // heading1.css("color", "yellow") // change its color to yellow
-
-    const container = $(".container ")
-    tbody = $("tbody") // initialize 'tbody' (.js variable) by assigning it to the 'tbody' in the html ($("tbody"))
-    template = $("tr.wbdv-template") // initialize 'template' by assigning it to the html element table row ('tr') which contains the users's data
-
-    // Create New users --
-    $createBtn = $(".wbdv-create").click(createUser) // event handler for clicking the add users button
-    $firstNameFld = $("#firstNameFld") // '#' references the id of the input in the html -- grabs the inputFlds referenced by the id
-    $usernameFld = $("#usernameFld")
-    $lastNameFld =$("#lastNameFld")
-    $roleFld = $("#roleFld")
-
-    // print out array
-    // console.log(users)
-
-    // GET data from the remote server, save it to our local cache 'users'
-    // then render it
-    userService.findAllUsers()
-        .then((_users) => { // then retrieve 'body' of the JSON transmission -- the body is the actual data set from the remote server (not the meta data). this is also an asynchronous process because we're streaming in the 'body:ReadableStream'
-            console.log(_users)
-            users =_users
-            renderUsers(users)
-        })
-
-
-
-
-}
-
-$(init) // calls on jQuery using '$'. It will now wait for the DOM to load before
-// it attempts to execute all the commands in 'init'.
-
-
-
-
-
-
+})()
