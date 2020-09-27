@@ -26,7 +26,10 @@ function AdminUserServiceClient() {
     }
 
     // TODO
-    function findUserById(userId) {  }
+    function findUserById(userId) {
+
+
+    }
 
     // PUT
     function updateUser(userId, user) {
