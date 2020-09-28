@@ -25,7 +25,6 @@ function AdminUserServiceClient() {
             .then(response => response.json())  // then we'll come back from the remote server with a response and update our local cache
     }
 
-    // TODO
     function findUserById(userId) {
         return fetch(`https://wbdv-generic-server.herokuapp.com/api/zhuje/users/${userId}`)
             .then(response => response.json())
