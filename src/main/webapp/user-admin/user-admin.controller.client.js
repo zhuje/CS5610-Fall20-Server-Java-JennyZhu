@@ -26,12 +26,12 @@
     let $usernameFld, $firstNameFld, $lastNameFld, $roleFld
     const userService = new AdminUserServiceClient()
 
-    const deleteUser1 = (event) => {
-        const deleteBtn = $(event.currentTarget)
-        // deleteBtn.parent().parent().parent().remove()
-        deleteBtn.parents("tr.wbdv-template").remove()
-        // console.log(deleteBtn)
-    }
+    // const deleteUser1 = (event) => {
+    //     const deleteBtn = $(event.currentTarget)
+    //     // deleteBtn.parent().parent().parent().remove()
+    //     deleteBtn.parents("tr.wbdv-template").remove()
+    //     // console.log(deleteBtn)
+    // }
 
     /*
     param @ index -- is the index of the selected 'user' from the 'users' Array
@@ -56,8 +56,8 @@
         for (let i = 0; i < users.length; i++) {
             const user = users[i]
             // console.log(user.username)
-            const li = $("<li>" + user.username + "</li>")
-            ul.append(li)
+            // const li = $("<li>" + user.username + "</li>")
+            // ul.append(li)
 
             clone = template.clone()
             clone.removeClass("wbdv-hidden")
@@ -66,38 +66,49 @@
             clone.find(".wbdv-first-name").html(user.first)
             clone.find(".wbdv-last-name").html(user.last)
             clone.find(".wbdv-role").html(user.role)
-            clone.find(".wbdv-remove").click(() => deleteUser2(i))
+            clone.find(".wbdv-remove").click(() => deleteUser(i))
             clone.find(".wbdv-edit").click(() => selectUser(i)) // 'i' is the index of the user in the usersArray
 
             tbody.append(clone)
         }
-        container.append(ul)
+        //container.append(ul)
     }
 
     const renderUser = (user) => {
         tbody.empty()
 
-        clone = template.clone()
-        clone.removeClass("wbdv-hidden")
+        for (let i = 0; i < users.length; i++) {
+            if (user._id == users[i].id){
+            clone = template.clone()
+            clone.removeClass("wbdv-hidden")
 
-        clone.find(".wbdv-username").html(user.username)
-        clone.find(".wbdv-first-name").html(user.first)
-        clone.find(".wbdv-last-name").html(user.last)
-        clone.find(".wbdv-role").html(user.role)
+            clone.find(".wbdv-username").html(user.username)
+            clone.find(".wbdv-first-name").html(user.first)
+            clone.find(".wbdv-last-name").html(user.last)
+            clone.find(".wbdv-role").html(user.role)
+            clone.find(".wbdv-remove").click(() => deleteUser(i))
+            clone.find(".wbdv-edit").click(() => selectUser(i)) // 'i' is the index of the user in the usersArray
 
-        tbody.append(clone)
+            console.log("renderUser")
+            tbody.append(clone)
+            }
+        }
+
     }
 
     const findUserById = (_index) => {
+        // console.log("findUserByID" + _index)
         const user = users[_index]
         const userId = user._id
+        // console.log("user id")
+        // console.log(users[_index])
         userService.findUserById(userId)
             .then(response => {
                 renderUser(user)
             })
     }
 
-    const deleteUser2 = (_index) => {
+    const deleteUser = (_index) => {
         const user = users[_index]
         const userId = user._id
         console.log(userId)
@@ -108,16 +119,18 @@
             })
     }
 
-    // const clearFld = () => {
-    //     console.log("clearing Fld ")
-    //     $usernameFld.val("")
-    //     $firstNameFld.val("")
-    //     $lastNameFld.val("")
-    // }
+    const clearFld = () => {
+        console.log("clearing Fld ")
+        $usernameFld.val("")
+        $firstNameFld.val("")
+        $lastNameFld.val("")
+        $roleFld.get(0).selectedIndex = 0;  // resets role dropdown back to first item
+
+    }
 
     /*
     createUser()
-    In the init() function there is a actionListener on the add button. Once
+    In the main() function there is a actionListener on the add button. Once
     it is clicked it calls here, createUser(). Then we get the value of the input fields
     with the .val() function. Then clear the input fields with (""). Then create a
     new object 'newUser' this will get 'pushed' to the remote server.
@@ -132,10 +145,11 @@
         console.log(role)
 
         // clear input fields in the .html
-        $usernameFld.val("")
-        $firstNameFld.val("")
-        $lastNameFld.val("")
+        // $usernameFld.val("")
+        // $firstNameFld.val("")
+        // $lastNameFld.val("")
         //$roleFld.get(0).selectedIndex = 0;  // resets role dropdown back to first item
+        clearFld();
 
         // create 'newUser' object
         const newUser = {
@@ -169,7 +183,8 @@
         const newLastName = $("#lastNameFld").val()
         const newRole = $ ("#roleFld").val()
 
-        //clearFld()
+
+        clearFld()
 
         //  PUT edited values into remote server THEN update local cache with the RESPONSE (updated JSON object).
         // pass the 'userID' into the function to reference the selected user
@@ -190,6 +205,7 @@
 
     }
 
+    // renders all users
     const findAllUsers = () => {
         userService.findAllUsers()
             .then((_users) => {
@@ -200,7 +216,7 @@
 
     }
 
-    const init = () => {
+    const main = () => {
         const heading1 = jQuery("h1")
         heading1
             .html("User Administrator")
@@ -224,10 +240,11 @@
         //         renderUsers(users)
         //     })
 
+        // renders all users
         findAllUsers()
 
     }
-    $(init)
+    $(main)
 
 
 })()
