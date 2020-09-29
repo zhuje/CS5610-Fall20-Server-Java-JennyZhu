@@ -65,8 +65,6 @@
     const findUserById = (_index) => {
         const user = users[_index];
         const userId = user._id;
-        // console.log("user id")
-        // console.log(users[_index])
         userService.findUserById(userId)
             .then(response => {
                 renderUser(user)
@@ -88,6 +86,7 @@
         console.log("clearing Fld ");
         $usernameFld.val("");
         $firstNameFld.val("");
+        $passwordFld.val(""); 
         $lastNameFld.val("");
         $roleFld.get(0).selectedIndex = 0;  // resets role dropdown back to first item
 
@@ -126,7 +125,7 @@
         // Store edit values from input.
         const newUsername = $("#usernameFld").val();
         const newFirstName = $("#firstNameFld").val();
-        const userId = users[selectedUserIndex]._id;
+        const userId = users[selectedUserIndex]._id; // ._id Referring to the id from the JSON object
         const newLastName = $("#lastNameFld").val();
         const newRole = $ ("#roleFld").val();
 
